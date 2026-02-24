@@ -22,7 +22,7 @@ struct KernelTraits {
     static constexpr int kMinBlocks = kNumThreads < 128 ? 5 : 3;
     static constexpr int kNumElements = kernel_config::num_elements;
     static constexpr int kElementSizeInBytes = sizeof(input_t);
-    static constexpr int kVectorSizeInBytes = 16;
+    static constexpr int kVectorSizeInBytes = 4;
     static constexpr int kVectorSize = kVectorSizeInBytes / kElementSizeInBytes;
     static constexpr int kNumVectors = kNumElements / kVectorSize;
     static constexpr bool kSeqDivisible = kSeqDivisible_;
