@@ -51,7 +51,7 @@ void set_forward_params(
     params.C_ptr = C.data_ptr();
     params.D_ptr = D_ptr;
     params.delta_bias_ptr = delta_bias_ptr;
-    params.out_ptr = out.data_ptr();
+    params.out_ptr = out.defined() ? out.data_ptr() : nullptr;
     params.x_ptr = x_ptr;
 
     params.A_channel_stride = A.stride(0);
