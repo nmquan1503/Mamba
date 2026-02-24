@@ -167,7 +167,7 @@ void set_backward_params(
         params.dC_batch_stride = dC.stride(0);
         params.dC_group_stride = dC.stride(1);
     }
-    params.dC_state_stride = is_constant_C ? dC.stride(1) : dB.stride(2);
+    params.dC_state_stride = is_constant_C ? dC.stride(1) : dC.stride(2);
 
     params.du_batch_stride = du.stride(0);
     params.du_channel_stride = du.stride(1);
@@ -301,7 +301,7 @@ std::vector<at::Tensor> selective_scan_backward(
         C, 
         out,
         D_.has_value() ? D_.value().data_ptr() : nullptr,
-        delta_bias_.has_value() ? D_.value().data_ptr() : nullptr,
+        delta_bias_.has_value() ? delta_bias_.value().data_ptr() : nullptr,
         x_.has_value() ? x_.value().data_ptr() : nullptr,
         dout, 
         du, 
