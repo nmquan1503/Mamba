@@ -81,8 +81,13 @@ void set_forward_params(
     params.delta_batch_stride = delta.stride(0);
     params.delta_channel_stride = delta.stride(1);
 
-    params.out_batch_stride = out.stride(0);
-    params.out_channel_stride = out.stride(1);
+    if (out.defined()) {
+        params.out_batch_stride = out.stride(0);
+        params.out_channel_stride = out.stride(1);
+    } else {
+        params.out_batch_stride = 0;
+        params.out_channel_stride = 0;
+    }
 }
 
 void set_backward_params(
