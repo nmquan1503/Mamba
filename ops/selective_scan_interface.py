@@ -43,6 +43,7 @@ class SelectiveScanFn(torch.autograd.Function):
 
     @staticmethod
     def backward(ctx, dout):
+        dout = ensure_contiguous(dout)
         u, delta, A, B, C, D, delta_bias, x = ctx.saved_tensors
         du, ddelta, dA, dB, dC, dD, ddelta_bias = selective_scan.backward(u, delta, A, B, C, D, delta_bias, dout, x, ctx.use_delta_softplus)
         return du, ddelta, dA, dB, dC, dD, ddelta_bias, None
